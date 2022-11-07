@@ -8,6 +8,7 @@ import { CulturaGastronomicaEntity } from './cultura-gastronomica.entity';
 import { CulturaGastronomicaService } from './cultura-gastronomica.service';
 import { HasRoles } from '../user/has-roles.decorator';
 import { Role } from 'src/user/role.enum';
+import { PaisEntity } from 'src/pais/pais.entity';
 
 @Controller('cultura-gastronomica')
 @UseInterceptors(BusinessErrorsInterceptor)
