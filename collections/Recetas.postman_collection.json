@@ -1,0 +1,671 @@
+{
+	"info": {
+		"_postman_id": "2cfa590d-6fec-4fa4-9058-6adc5973855a",
+		"name": "Recetas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Agregar una receta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"id_receta\", data.id);\r",
+							"\r",
+							"pm.test(\"El código de estado es 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwic3ViIjoxLCJyb2xlcyI6WyJ1c2VyR2FzdHJvbm9teSIsInVzZXJDb3VudHJ5IiwidXNlclByb2R1Y3QiLCJ1c2VyUmVjZWlwdCIsInVzZXJSZXN0YXVyYW50IiwidXNlcldyaXRlIiwidXNlckRlbGV0ZSJdLCJpYXQiOjE2NjQ2NTk4NDYsImV4cCI6MTY2NDY2NzA0Nn0.qEopu1qnDVHGdHsRV53o_zsy1L07Ys4SRmzSmTp6M6M",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"nombre\": \"Nombre de receta\",\r\n   \"descripcion\": \"descripción de la receta\",\r\n   \"foto\": \"http://www.image.com/receta.png\",\r\n   \"proceso\": \"proceso de preparación de la receta\",\r\n   \"video\": \"http://www.image.com/receta.mp4\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/recetas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recetas"
+					]
+				},
+				"description": "This request permits create a new country. The API returns the created resource with the assigned ID."
+			},
+			"response": [
+				{
+					"name": "Agregar una receta",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"nombre\": \"Nombre de receta\",\r\n   \"descripcion\": \"descripción de la receta\",\r\n   \"foto\": \"http://www.image.com/receta.png\",\r\n   \"proceso\": \"proceso de preparación de la receta\",\r\n   \"video\": \"http://www.image.com/receta.mp4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/recetas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recetas"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\r\n   \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n   \"nombre\": \"Nombre de receta\",\r\n   \"descripcion\": \"descripción de la receta\",\r\n   \"foto\": \"http://www.image.com/receta.png\",\r\n   \"proceso\": \"proceso de preparación de la receta\",\r\n   \"video\": \"http://www.image.com/receta.mp4\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todas las recetas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Número de recetas > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"El código de estado es 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwic3ViIjoxLCJyb2xlcyI6WyJ1c2VyR2FzdHJvbm9teSIsInVzZXJDb3VudHJ5IiwidXNlclByb2R1Y3QiLCJ1c2VyUmVjZWlwdCIsInVzZXJSZXN0YXVyYW50IiwidXNlcldyaXRlIiwidXNlckRlbGV0ZSJdLCJpYXQiOjE2NjQ2NTk4NDYsImV4cCI6MTY2NDY2NzA0Nn0.qEopu1qnDVHGdHsRV53o_zsy1L07Ys4SRmzSmTp6M6M",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/recetas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recetas"
+					]
+				},
+				"description": "This request permits obtain all countries registered. The API returns all countries."
+			},
+			"response": [
+				{
+					"name": "Obtener todas las recetas",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/recetas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recetas"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "[\r\n   {\r\n        \"id\": \"48a9ab90\",\r\n    \t\"nombre\": \"Nombre de receta\",\r\n        \"descripcion\": \"descripción de la receta\",\r\n        \"proceso\": \"proceso de preparación de la receta\",\r\n        \"foto\": \"http://www.image.com/receta.png\",\r\n        \"video\": \"http://www.image.com/receta.mp4\",\r\n        \"culturasGastronomicas\": [\r\n           {\r\n               \"id\": \"14f05d0e-1275-11ed-861d-0242ac120002\",\r\n                \"nombre\": \"Gastronomia Italiana\",\r\n                \"descripcion\": \"La gastronomía de Italia se caracteriza por sus elaboraciones con abundantes verduras, frutas, carnes, pescados, arroz, pastas y panes. Algunos de sus platos típicos son la pizza, la pasta y el rissoto.\"\r\n            },\r\n           {\r\n                \"id\": \"14f05fgfd0e-1275-11ed-861d-0242ac120032\",\r\n                \"nombre\": \"Gastronomia Arabe\",\r\n                \"descripcion\": \"La cocina árabe es la cocina de los árabes, definida como las diversas cocinas regionales que abarcan el mundo árabe, desde el Magreb hasta la Media Luna Fértil y la Península Arábiga. Estas cocinas tienen siglos de antigüedad y reflejan la cultura del comercio de Baharat ( especias ), hierbas y alimentos. Las regiones tienen muchas similitudes, pero también tradiciones únicas. También han sido influenciados por el clima, el cultivo y el comercio mutuo.\"\r\n           }\r\n        ]\r\n   },\r\n   {\r\n        \"id\": \"156df238\",\r\n\t    \"nombre\": \"Nombre de receta2\",\r\n        \"descripcion\": \"descripción de la receta2\",\r\n        \"proceso\": \"proceso de preparación de la receta2\",\r\n        \"foto\": \"http://www.image2.com/receta.png\",\r\n        \"video\": \"http://www.image2.com/receta.mp4\",\r\n        \"culturasGastronomicas\": [\r\n           {\r\n               \"id\": \"14f05d0e-1275-11ed-861d-0242ac120002\",\r\n                \"nombre\": \"Gastronomia Italiana\",\r\n                \"descripcion\": \"La gastronomía de Italia se caracteriza por sus elaboraciones con abundantes verduras, frutas, carnes, pescados, arroz, pastas y panes. Algunos de sus platos típicos son la pizza, la pasta y el rissoto.\"\r\n            },\r\n           {\r\n                \"id\": \"14f05fgfd0e-1275-11ed-861d-0242ac120032\",\r\n                \"nombre\": \"Gastronomia Arabe\",\r\n                \"descripcion\": \"La cocina árabe es la cocina de los árabes, definida como las diversas cocinas regionales que abarcan el mundo árabe, desde el Magreb hasta la Media Luna Fértil y la Península Arábiga. Estas cocinas tienen siglos de antigüedad y reflejan la cultura del comercio de Baharat ( especias ), hierbas y alimentos. Las regiones tienen muchas similitudes, pero también tradiciones únicas. También han sido influenciados por el clima, el cultivo y el comercio mutuo.\"\r\n           }\r\n       ]\r\n   }\r\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener una receta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwic3ViIjoxLCJyb2xlcyI6WyJ1c2VyR2FzdHJvbm9teSIsInVzZXJDb3VudHJ5IiwidXNlclByb2R1Y3QiLCJ1c2VyUmVjZWlwdCIsInVzZXJSZXN0YXVyYW50IiwidXNlcldyaXRlIiwidXNlckRlbGV0ZSJdLCJpYXQiOjE2NjQ2NTk4NDYsImV4cCI6MTY2NDY2NzA0Nn0.qEopu1qnDVHGdHsRV53o_zsy1L07Ys4SRmzSmTp6M6M",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/recetas/{{id_receta}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recetas",
+						"{{id_receta}}"
+					]
+				},
+				"description": "This request permits obtain a country. The API returns an specific country."
+			},
+			"response": [
+				{
+					"name": "Obtener una receta",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/recetas/{{id_receta}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recetas",
+								"{{id_receta}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"48a9ab90\",\r\n    \"nombre\": \"Nombre de receta\",\r\n    \"descripcion\": \"descripción de la receta\",\r\n    \"proceso\": \"proceso de preparación de la receta\",\r\n    \"foto\": \"http://www.image.com/receta.png\",\r\n    \"video\": \"http://www.image.com/receta.mp4\",\r\n    \"culturasGastronomicas\": [\r\n        {\r\n            \"id\": \"14f05d0e-1275-11ed-861d-0242ac120002\",\r\n            \"nombre\": \"Gastronomia Italiana\",\r\n            \"descripcion\": \"La gastronomía de Italia se caracteriza por sus elaboraciones con abundantes verduras, frutas, carnes, pescados, arroz, pastas y panes. Algunos de sus platos típicos son la pizza, la pasta y el rissoto.\"\r\n        },\r\n        {\r\n            \"id\": \"14f05fgfd0e-1275-11ed-861d-0242ac120032\",\r\n            \"nombre\": \"Gastronomia Arabe\",\r\n            \"descripcion\": \"La cocina árabe es la cocina de los árabes, definida como las diversas cocinas regionales que abarcan el mundo árabe, desde el Magreb hasta la Media Luna Fértil y la Península Arábiga. Estas cocinas tienen siglos de antigüedad y reflejan la cultura del comercio de Baharat ( especias ), hierbas y alimentos. Las regiones tienen muchas similitudes, pero también tradiciones únicas. También han sido influenciados por el clima, el cultivo y el comercio mutuo.\"\r\n        }\r\n    ]\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener una receta que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Obtener el mensaje de error esperado\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"No se encontró la receta con la identificación proporcionada.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwic3ViIjoxLCJyb2xlcyI6WyJ1c2VyR2FzdHJvbm9teSIsInVzZXJDb3VudHJ5IiwidXNlclByb2R1Y3QiLCJ1c2VyUmVjZWlwdCIsInVzZXJSZXN0YXVyYW50IiwidXNlcldyaXRlIiwidXNlckRlbGV0ZSJdLCJpYXQiOjE2NjQ2NTk4NDYsImV4cCI6MTY2NDY2NzA0Nn0.qEopu1qnDVHGdHsRV53o_zsy1L07Ys4SRmzSmTp6M6M",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/recetas/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recetas",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "This request get an invalid country. The API retuns a response for the invalid operation."
+			},
+			"response": [
+				{
+					"name": "Obtener una receta que no existe",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/recetas/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recetas",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"No se encontró la receta con la identificación proporcionada.\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar una receta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwic3ViIjoxLCJyb2xlcyI6WyJ1c2VyR2FzdHJvbm9teSIsInVzZXJDb3VudHJ5IiwidXNlclByb2R1Y3QiLCJ1c2VyUmVjZWlwdCIsInVzZXJSZXN0YXVyYW50IiwidXNlcldyaXRlIiwidXNlckRlbGV0ZSJdLCJpYXQiOjE2NjQ2NTk4NDYsImV4cCI6MTY2NDY2NzA0Nn0.qEopu1qnDVHGdHsRV53o_zsy1L07Ys4SRmzSmTp6M6M",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"nombre\": \"Nombre de receta 2\",\r\n   \"descripcion\": \"descripción de la receta 2\",\r\n   \"proceso\": \"proceso de preparación de la receta 2\",\r\n   \"foto\": \"http://www.image.com/receta.png\",\r\n   \"video\": \"http://www.image.com/receta.mp4\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/recetas/{{id_receta}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recetas",
+						"{{id_receta}}"
+					]
+				},
+				"description": "This request permits update a country. The API update the especific country."
+			},
+			"response": [
+				{
+					"name": "Actualizar una receta",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"nombre\": \"Nombre de receta 2\",\r\n   \"descripcion\": \"descripción de la receta 2\",\r\n   \"proceso\": \"proceso de preparación de la receta 2\",\r\n   \"video\": \"http://www.image.com/receta.mp4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/recetas/{{id_receta}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recetas",
+								"{{id_receta}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\r\n   \"id\": \"144602ac-1278-11ed-861d-0242ac120002\",\r\n   \"nombre\": \"Nombre de receta 2\",\r\n   \"descripcion\": \"descripción de la receta 2\",\r\n   \"proceso\": \"proceso de preparación de la receta 2\",\r\n   \"video\": \"http://www.image.com/receta.mp4\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar una receta que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Obtener el mensaje de error esperado\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"No se encontró la receta con la identificación proporcionada.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwic3ViIjoxLCJyb2xlcyI6WyJ1c2VyR2FzdHJvbm9teSIsInVzZXJDb3VudHJ5IiwidXNlclByb2R1Y3QiLCJ1c2VyUmVjZWlwdCIsInVzZXJSZXN0YXVyYW50IiwidXNlcldyaXRlIiwidXNlckRlbGV0ZSJdLCJpYXQiOjE2NjQ2NTk4NDYsImV4cCI6MTY2NDY2NzA0Nn0.qEopu1qnDVHGdHsRV53o_zsy1L07Ys4SRmzSmTp6M6M",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Nombre de receta\",\r\n    \"descripcion\": \"descripción de la receta\",\r\n    \"proceso\": \"proceso de preparación de la receta\",\r\n    \"foto\": \"http://www.image.com/receta.png\",\r\n    \"video\": \"http://www.image.com/receta.mp4\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/recetas/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recetas",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "This request try to update an invalide country. The API returns an error message."
+			},
+			"response": [
+				{
+					"name": "Actualizar una receta que no existe",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Nombre de receta\",\r\n    \"descripcion\": \"descripción de la receta\",\r\n    \"proceso\": \"proceso de preparación de la receta\",\r\n    \"foto\": \"http://www.image.com/receta.png\",\r\n    \"video\": \"http://www.image.com/receta.mp4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/recetas/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recetas",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"No se encontró la receta con la identificación proporcionada.\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Eliminar una receta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwic3ViIjoxLCJyb2xlcyI6WyJ1c2VyR2FzdHJvbm9teSIsInVzZXJDb3VudHJ5IiwidXNlclByb2R1Y3QiLCJ1c2VyUmVjZWlwdCIsInVzZXJSZXN0YXVyYW50IiwidXNlcldyaXRlIiwidXNlckRlbGV0ZSJdLCJpYXQiOjE2NjQ2NTk4NDYsImV4cCI6MTY2NDY2NzA0Nn0.qEopu1qnDVHGdHsRV53o_zsy1L07Ys4SRmzSmTp6M6M",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/recetas/{{id_receta}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recetas",
+						"{{id_receta}}"
+					]
+				},
+				"description": "This request delete a country. The API returns the success of the operation."
+			},
+			"response": [
+				{
+					"name": "Eliminar una receta",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/recetas/{{receta_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recetas",
+								"{{receta_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Eliminar una receta que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Obtener el mensaje de error esperado\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"No se encontró la receta con la identificación proporcionada.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwic3ViIjoxLCJyb2xlcyI6WyJ1c2VyR2FzdHJvbm9teSIsInVzZXJDb3VudHJ5IiwidXNlclByb2R1Y3QiLCJ1c2VyUmVjZWlwdCIsInVzZXJSZXN0YXVyYW50IiwidXNlcldyaXRlIiwidXNlckRlbGV0ZSJdLCJpYXQiOjE2NjQ2NTk4NDYsImV4cCI6MTY2NDY2NzA0Nn0.qEopu1qnDVHGdHsRV53o_zsy1L07Ys4SRmzSmTp6M6M",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/recetas/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recetas",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "This request delete try to delete an invalid country. The API returns an error message."
+			},
+			"response": [
+				{
+					"name": "Eliminar una receta que no existe",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/recetas/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recetas",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"La receta solicitada no existe\"\r\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		}
+	]
+}

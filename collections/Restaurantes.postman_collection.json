@@ -1,0 +1,595 @@
+{
+	"info": {
+		"_postman_id": "f02125c0-6537-4cb2-9ce0-57354da3346e",
+		"name": "Restaurantes",
+		"description": "Documentación para el recurso Restaurantes.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10351337"
+	},
+	"item": [
+		{
+			"name": "Agregar un restaurante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"id_restaurante\", data.id);\r",
+							"\r",
+							"pm.test(\"El código de estado es 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"nombre\": \"Smoked Room\",\r\n   \"ciudad\": \"Madrid\",\r\n   \"numeroEstrellasMichellin\": 4,\r\n   \"fechaConsecucionMichellin\": \"2018-03-29\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/restaurantes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"restaurantes"
+					]
+				},
+				"description": "Esta solicitud crea un nuevo restaurante. La API devuelve el recurso creado con el ID asignado."
+			},
+			"response": [
+				{
+					"name": "Agregar un restaurante",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"nombre\": \"Smoked Room\",\r\n   \"ciudad\": \"Madrid\",\r\n   \"numeroEstrellasMichellin\": 4,\r\n   \"fechaConsecucionMichellin\": \"2012-04-21T18:25:43-05:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/restaurantes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"restaurantes"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90\",\n    \"nombre\": \"Smoked Room\",\n    \"ciudad\": \"Madrid\",\n    \"numeroEstrellasMichellin\": 4,\n    \"fechaConsecucionMichellin\": \"2012-04-21T18:25:43-05:00\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todos los restaurantes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Número de restaurantes > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"El código de estado es 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/restaurantes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"restaurantes"
+					]
+				},
+				"description": "Esta solicitud recibe todos los restaurantes. La API devuelve todos los restaurantes con información."
+			},
+			"response": [
+				{
+					"name": "Obtener todos los restaurantes",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/restaurantes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"restaurantes"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "[\r\n   {\r\n        \"id\": \"48a9ab90\",\r\n        \"nombre\": \"Smoked Room\",\r\n        \"ciudad\": \"Madrid\",\r\n        \"numeroEstrellasMichellin\": 4,\r\n        \"fechaConsecucionMichellin\": \"2012-04-21T18:25:43-05:00\",\r\n        \"culturasGastronomicas\": [\r\n           {\r\n               \"id\": \"14f05d0e-1275-11ed-861d-0242ac120002\",\r\n                \"nombre\": \"Gastronomia Italiana\",\r\n                \"descripcion\": \"La gastronomía de Italia se caracteriza por sus elaboraciones con abundantes verduras, frutas, carnes, pescados, arroz, pastas y panes. Algunos de sus platos típicos son la pizza, la pasta y el rissoto.\"\r\n            },\r\n           {\r\n                \"id\": \"14f05fgfd0e-1275-11ed-861d-0242ac120032\",\r\n                \"nombre\": \"Gastronomia Arabe\",\r\n                \"descripcion\": \"La cocina árabe es la cocina de los árabes, definida como las diversas cocinas regionales que abarcan el mundo árabe, desde el Magreb hasta la Media Luna Fértil y la Península Arábiga. Estas cocinas tienen siglos de antigüedad y reflejan la cultura del comercio de Baharat ( especias ), hierbas y alimentos. Las regiones tienen muchas similitudes, pero también tradiciones únicas. También han sido influenciados por el clima, el cultivo y el comercio mutuo.\"\r\n           }\r\n        ],\r\n        \"pais\": \r\n            {\r\n                \"id\": \"14fgff05d0e-1275-11ed-861d-0242ac120032\",\r\n                \"name\": \"España\"\r\n            }\r\n   },\r\n   {\r\n        \"id\": \"156df238\",\r\n        \"nombre\": \"Deessa\",\r\n        \"city\": \"Madrid\",\r\n        \"numeroEstrellasMichellin\": 3,\r\n        \"fechaConsecucionMichellin\": \"2020-08-15T22:24:43-05:00\",\r\n        \"culturasGastronomicas\": [\r\n           {\r\n               \"id\": \"14f05d0e-1275-11ed-861d-0242ac120002\",\r\n                \"nombre\": \"Gastronomia Italiana\",\r\n                \"descripcion\": \"La gastronomía de Italia se caracteriza por sus elaboraciones con abundantes verduras, frutas, carnes, pescados, arroz, pastas y panes. Algunos de sus platos típicos son la pizza, la pasta y el rissoto.\"\r\n            },\r\n           {\r\n                \"id\": \"14f05fgfd0e-1275-11ed-861d-0242ac120032\",\r\n                \"nombre\": \"Gastronomia Arabe\",\r\n                \"descripcion\": \"La cocina árabe es la cocina de los árabes, definida como las diversas cocinas regionales que abarcan el mundo árabe, desde el Magreb hasta la Media Luna Fértil y la Península Arábiga. Estas cocinas tienen siglos de antigüedad y reflejan la cultura del comercio de Baharat ( especias ), hierbas y alimentos. Las regiones tienen muchas similitudes, pero también tradiciones únicas. También han sido influenciados por el clima, el cultivo y el comercio mutuo.\"\r\n           }\r\n       ],\r\n       \"pais\": \r\n            {\r\n                \"id\": \"14fgff05d0e-1275-11ed-861d-0242ac120032\",\r\n                \"name\": \"España\"\r\n            }\r\n   }\r\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener un restaurante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/restaurantes/{{id_restaurante}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"restaurantes",
+						"{{id_restaurante}}"
+					]
+				},
+				"description": "Esta solicitud de un restaurante. La API devuelve el restaurante con información."
+			},
+			"response": [
+				{
+					"name": "Obtener un restaurante",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/restaurantes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"restaurantes",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90\",\n    \"nombre\": \"Smoked Room\",\n    \"ciudad\": \"Madrid\",\n    \"numeroEstrellasMichellin\": 4,\n    \"fechaConsecucionMichellin\": \"2012-04-21T18:25:43-05:00\",\n    \"culturasGastronomicas\": [\n        {\n            \"id\": \"14f05d0e-1275-11ed-861d-0242ac120002\",\n            \"nombre\": \"Gastronomia Italiana\",\n            \"descripcion\": \"La gastronomía de Italia se caracteriza por sus elaboraciones con abundantes verduras, frutas, carnes, pescados, arroz, pastas y panes. Algunos de sus platos típicos son la pizza, la pasta y el rissoto.\"\n        },\n        {\n            \"id\": \"14f05fgfd0e-1275-11ed-861d-0242ac120032\",\n            \"nombre\": \"Gastronomia Arabe\",\n            \"descripcion\": \"La cocina árabe es la cocina de los árabes, definida como las diversas cocinas regionales que abarcan el mundo árabe, desde el Magreb hasta la Media Luna Fértil y la Península Arábiga. Estas cocinas tienen siglos de antigüedad y reflejan la cultura del comercio de Baharat ( especias ), hierbas y alimentos. Las regiones tienen muchas similitudes, pero también tradiciones únicas. También han sido influenciados por el clima, el cultivo y el comercio mutuo.\"\n        }\n    ],\n    \"pais\":\n        {\n            \"id\": \"14fgff05d0e-1275-11ed-861d-0242ac120032\",\n            \"nombre\": \"España\"\n        }\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un restaurante que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Obtener el mensaje de error esperado\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"No se encontró el restaurante con la identificación proporcionada.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/restaurantes/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"restaurantes",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "Esta solicitud recibe un restaurante no válido. La API devuelve un mensaje de error \"No se encontró el restaurante con la identificación dada\""
+			},
+			"response": [
+				{
+					"name": "Obtener un restaurante que no existe",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/restaurantes/00000000-0000-0000-0000-000000000000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"restaurantes",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"No se encontró el restaurante con la identificación proporcionada.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar un restaurante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"nombre\": \"Smoked Room (new name)\",\r\n   \"ciudad\": \"Madrid\",\r\n   \"numeroEstrellasMichellin\": 4,\r\n   \"fechaConsecucionMichellin\": \"2012-04-21\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/restaurantes/{{id_restaurante}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"restaurantes",
+						"{{id_restaurante}}"
+					]
+				},
+				"description": "Esta solicitud actualiza el restaurante. La API devuelve el recurso de actualización con toda la información."
+			},
+			"response": [
+				{
+					"name": "Actualizar un restaurante",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"nombre\": \"Smoked Room (new name)\",\r\n   \"ciudad\": \"Madrid\",\r\n   \"numeroEstrellasMichellin\": 4,\r\n   \"fechaConsecucionMichellin\": \"2012-04-21\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/restaurantes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"restaurantes",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90\",\n    \"nombre\": \"Smoked Room (new name)\",\n    \"ciudad\": \"Madrid\",\n    \"numeroEstrellasMichellin\": 4,\n    \"fechaConsecucionMichellin\": \"2012-04-21T18:25:43-05:00\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar un restaurante que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Obtener el mensaje de error esperado\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"No se encontró el restaurante con la identificación proporcionada.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"nombre\": \"Smoked Room (new name)\",\r\n   \"ciudad\": \"Madrid\",\r\n   \"numeroEstrellasMichellin\": 4,\r\n   \"fechaConsecucionMichellin\": \"2012-04-21\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/restaurantes/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"restaurantes",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "Esta solicitud actualiza un restaurante no válido. La API devuelve un mensaje de error \"No se encontró el restaurante con la identificación dada\""
+			},
+			"response": [
+				{
+					"name": "Actualizar un restaurante que no existe",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"nombre\": \"Smoked Room (new name)\",\r\n   \"ciudad\": \"Madrid\",\r\n   \"numeroEstrellasMichellin\": 4,\r\n   \"fechaConsecucionMichellin\": \"2012-04-21T18:25:43-05:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/restaurantes/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"restaurantes",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"No se encontró el restaurante con la identificación proporcionada.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Eliminar un restaurante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/restaurantes/{{id_restaurante}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"restaurantes",
+						"{{id_restaurante}}"
+					]
+				},
+				"description": "Esta solicitud eliminar restaurante. La API devuelve el código de estado de la operación."
+			},
+			"response": [
+				{
+					"name": "Eliminar un restaurante",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/restaurantes/{{restaurante_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"restaurantes",
+								"{{restaurante_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Eliminar un restaurante que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Obtener el mensaje de error esperado\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"No se encontró el restaurante con la identificación proporcionada.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/restaurantes/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"restaurantes",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "Esta solicitud elimina un restaurante no válido. La API devuelve un mensaje de error \"No se encontró el restaurante con la identificación dada\""
+			},
+			"response": [
+				{
+					"name": "Eliminar un restaurante que no existe",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/restaurantes/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"restaurantes",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"No se encontró el restaurante con la identificación proporcionada.\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "restaurante_id",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

@@ -1,0 +1,585 @@
+{
+	"info": {
+		"_postman_id": "976031be-9316-40f0-8565-26f0316259d0",
+		"name": "ProductosCaracteristicos",
+		"description": "Documentación para el recurso Restaurantes.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Agregar un productoCaracteristico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"id_producto_caracteristico\", data.id);\r",
+							"\r",
+							"pm.test(\"El código de estado es 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Salsa Camboyana\",\r\n    \"descripcion\": \"Salsa utilizada para la preparación de lok lak.\",\r\n    \"historia\": \"Una salsa de lima y pimienta negra utilizada en el lok lak, es tan popular en Camboya que pensarías que se originó allí, pero en realidad proviene de Vietnam.\",\r\n    \"categoria\": \"3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/productosCaracteristicos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"productosCaracteristicos"
+					]
+				},
+				"description": "Esta solicitud crea un nuevo productoCaracteristico. La API devuelve el recurso creado con el ID asignado."
+			},
+			"response": [
+				{
+					"name": "Agregar un productoCaracteristico",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/productosCaracteristicos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"productosCaracteristicos"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90\",\n    \"nombre\": \"Salsa Camboyana\",\n    \"descripcion\": \"Salsa utilizada para la preparación de lok lak.\",\n    \"historia\": \"Una salsa de lima y pimienta negra utilizada en el lok lak, es tan popular en Camboya que pensarías que se originó allí, pero en realidad proviene de Vietnam.\",\n    \"categoria\": \"3\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todos los productosCaracteristicos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Número de productosCaracteristicos > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"El código de estado es 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/productosCaracteristicos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"productosCaracteristicos"
+					]
+				},
+				"description": "Esta solicitud recibe todos los productosCaracteristicos. La API devuelve todos los productosCaracteristicos con información."
+			},
+			"response": [
+				{
+					"name": "Obtener todos los productosCaracteristicos",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/productosCaracteristicos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"productosCaracteristicos"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "[\r\n    {\r\n        \"id\": \"8264853e-c6d1-4585-adb2-680b6a17274c\",\r\n        \"nombre\": \"Salsa Camboyana\",\r\n        \"descripcion\": \"Salsa utilizada para la preparación de lok lak.\",\r\n        \"historia\": \"Una salsa de lima y pimienta negra utilizada en el lok lak, es tan popular en Camboya que pensarías que se originó allí, pero en realidad proviene de Vietnam.\",\r\n        \"categoria\": 1,\r\n        \"culturasGastronomicas\": []\r\n    },\r\n    {\r\n        \"id\": \"b11fc520-a906-4886-a0a6-792ebf6f840c\",\r\n        \"nombre\": \"Salsa Camboyana\",\r\n        \"descripcion\": \"Salsa utilizada para la preparación de lok lak.\",\r\n        \"historia\": \"Una salsa de lima y pimienta negra utilizada en el lok lak, es tan popular en Camboya que pensarías que se originó allí, pero en realidad proviene de Vietnam.\",\r\n        \"categoria\": 1,\r\n        \"culturasGastronomicas\": []\r\n    },\r\n    {\r\n        \"id\": \"db8d05de-fbf0-431a-951a-1df6d45e08bc\",\r\n        \"nombre\": \"Salsa Camboyana\",\r\n        \"descripcion\": \"Salsa utilizada para la preparación de lok lak.\",\r\n        \"historia\": \"Una salsa de lima y pimienta negra utilizada en el lok lak, es tan popular en Camboya que pensarías que se originó allí, pero en realidad proviene de Vietnam.\",\r\n        \"categoria\": 3,\r\n        \"culturasGastronomicas\": []\r\n    }\r\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener un productoCaracteristico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/productosCaracteristicos/{{id_producto_caracteristico}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"productosCaracteristicos",
+						"{{id_producto_caracteristico}}"
+					]
+				},
+				"description": "Esta solicitud de un productoCaracteristico. La API devuelve el productoCaracteristico con información."
+			},
+			"response": [
+				{
+					"name": "Obtener un productoCaracteristico",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/productosCaracteristicos/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"productosCaracteristicos",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n        \"id\": \"8264853e-c6d1-4585-adb2-680b6a17274c\",\n        \"nombre\": \"Salsa Camboyana\",\n        \"descripcion\": \"Salsa utilizada para la preparación de lok lak.\",\n        \"historia\": \"Una salsa de lima y pimienta negra utilizada en el lok lak, es tan popular en Camboya que pensarías que se originó allí, pero en realidad proviene de Vietnam.\",\n        \"categoria\": 1,\n        \"culturasGastronomicas\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un productoCaracteristico que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Obtener el mensaje de error esperado\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"No se encontró el productoCaracteristico con la identificación proporcionada.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/productosCaracteristicos/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"productosCaracteristicos",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "Esta solicitud recibe un productoCaracteristico no válido. La API devuelve un mensaje de error \"No se encontró el productoCaracteristico con la identificación dada\""
+			},
+			"response": [
+				{
+					"name": "Obtener un productoCaracteristico que no existe",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/productosCaracteristicos/00000000-0000-0000-0000-000000000000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"productosCaracteristicos",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"No se encontró el productoCaracteristico con la identificación proporcionada.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar un productoCaracteristico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"nombre\": \"Salsa Camboyana\",\r\n    \"descripcion\": \"Salsa utilizada para la preparación de lok lak.\",\r\n    \"historia\": \"Una salsa de lima y pimienta negra utilizada en el lok lak, es tan popular en Camboya que pensarías que se originó allí, pero en realidad proviene de Vietnam.\",\r\n    \"categoria\": \"2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/productosCaracteristicos/{{id_producto_caracteristico}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"productosCaracteristicos",
+						"{{id_producto_caracteristico}}"
+					]
+				},
+				"description": "Esta solicitud actualiza el productoCaracteristico. La API devuelve el recurso de actualización con toda la información."
+			},
+			"response": [
+				{
+					"name": "Actualizar un productoCaracteristico",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Salsa Camboyana\",\r\n    \"descripcion\": \"Salsa utilizada para la preparación de lok lak.\",\r\n    \"historia\": \"Una salsa de lima y pimienta negra utilizada en el lok lak, es tan popular en Camboya que pensarías que se originó allí, pero en realidad proviene de Vietnam.\",\r\n    \"categoria\": \"3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/productosCaracteristicos/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"productosCaracteristicos",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90\",\n    \"nombre\": \"Salsa Camboyana\",\n    \"descripcion\": \"Salsa utilizada para la preparación de lok lak.\",\n    \"historia\": \"Una salsa de lima y pimienta negra utilizada en el lok lak, es tan popular en Camboya que pensarías que se originó allí, pero en realidad proviene de Vietnam.\",\n    \"categoria\": \"3\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar un productoCaracteristico que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Obtener el mensaje de error esperado\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"No se encontró el productoCaracteristico con la identificación proporcionada.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"nombre\": \"Salsa Camboyana\",\r\n    \"descripcion\": \"Salsa utilizada para la preparación de lok lak.\",\r\n    \"historia\": \"Una salsa de lima y pimienta negra utilizada en el lok lak, es tan popular en Camboya que pensarías que se originó allí, pero en realidad proviene de Vietnam.\",\r\n    \"categoria\": \"2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/productosCaracteristicos/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"productosCaracteristicos",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "Esta solicitud actualiza un productoCaracteristico no válido. La API devuelve un mensaje de error \"No se encontró el productoCaracteristico con la identificación dada\""
+			},
+			"response": [
+				{
+					"name": "Actualizar un productoCaracteristico que no existe",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"nombre\": \"Salsa Camboyana\",\r\n    \"descripcion\": \"Salsa utilizada para la preparación de lok lak.\",\r\n    \"historia\": \"Una salsa de lima y pimienta negra utilizada en el lok lak, es tan popular en Camboya que pensarías que se originó allí, pero en realidad proviene de Vietnam.\",\r\n    \"categoria\": \"2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/productosCaracteristicos/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"productosCaracteristicos",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"No se encontró el productoCaracteristico con la identificación proporcionada.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Eliminar un productoCaracteristico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/productosCaracteristicos/{{id_producto_caracteristico}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"productosCaracteristicos",
+						"{{id_producto_caracteristico}}"
+					]
+				},
+				"description": "Esta solicitud elimina un productoCaracteristico. La API devuelve el código de estado de la operación."
+			},
+			"response": [
+				{
+					"name": "Eliminar un productoCaracteristico",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/productosCaracteristicos/{{id_producto_caracteristico}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"productosCaracteristicos",
+								"{{id_producto_caracteristico}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Eliminar un productoCaracteristicoque no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Obtener el mensaje de error esperado\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"No se encontró el productoCaracteristico con la identificación proporcionada.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/productosCaracteristicos/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"productosCaracteristicos",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "Esta solicitud elimina un productoCaracteristico no válido. La API devuelve un mensaje de error \"No se encontró el productoCaracteristico con la identificación dada\""
+			},
+			"response": [
+				{
+					"name": "Eliminar un productoCaracteristico que no existe",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/productosCaracteristicos/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"productosCaracteristicos",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"No se encontró el productoCaracteristico con la identificación proporcionada.\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "restaurante_id",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

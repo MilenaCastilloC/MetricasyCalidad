@@ -1,0 +1,805 @@
+{
+	"info": {
+		"_postman_id": "2bd2db10-f23b-4e77-8017-51d69f190468",
+		"name": "Pais",
+		"description": "Documentación para el recurso Restaurantes.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4920142"
+	},
+	"item": [
+		{
+			"name": "Agregar un pais",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"id_pais\", data.id);\r",
+							"\r",
+							"pm.test(\"El código de estado es 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"nombre\": \"Colombia\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/pais",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pais"
+					]
+				},
+				"description": "Esta solicitud crea un nuevo restaurante. La API devuelve el recurso creado con el ID asignado."
+			},
+			"response": [
+				{
+					"name": "201",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"nombre\": \"Colombia\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pais",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pais"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "65"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"41-YabdZQaHSAYIxINb3ynuKmms1EQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 02 Oct 2022 05:32:11 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"nombre\": \"Colombia\",\n    \"id\": \"146ba629-d02c-45c1-b753-d106b070eb93\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todos los paises",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Número de cultura gastronomica > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"El código de estado es 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/pais",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pais"
+					]
+				},
+				"description": "Esta solicitud recibe todos los restaurantes. La API devuelve todos los restaurantes con información."
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/pais",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pais"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "67"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"43-K9boAKqXhCIfjTrJfhoMM83MDbM\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 02 Oct 2022 05:39:13 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"146ba629-d02c-45c1-b753-d106b070eb93\",\n        \"nombre\": \"Colombia\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener un pais",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/pais/{{id_pais}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pais",
+						"{{id_pais}}"
+					]
+				},
+				"description": "Esta solicitud de un restaurante. La API devuelve el restaurante con información."
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/pais/{{id_pais}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pais",
+								"{{id_pais}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "67"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"43-K9boAKqXhCIfjTrJfhoMM83MDbM\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 02 Oct 2022 05:40:31 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"146ba629-d02c-45c1-b753-d106b070eb93\",\n        \"nombre\": \"Colombia\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener un pais que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Obtener el mensaje de error esperado\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"No se encontró el restaurante con la identificación proporcionada.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/pais/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pais",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "Esta solicitud recibe un restaurante no válido. La API devuelve un mensaje de error \"No se encontró el restaurante con la identificación dada\""
+			},
+			"response": [
+				{
+					"name": "404",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/pais/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pais",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "92"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"5c-DXSZe0fMHFgPqM1EvyLjCZ3/Bug\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 02 Oct 2022 05:41:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"No se encontró el pais con la identificación proporcionada.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar un pais",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"nombre\": \"Colombia 1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/pais/{{id_pais}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pais",
+						"{{id_pais}}"
+					]
+				},
+				"description": "Esta solicitud actualiza el restaurante. La API devuelve el recurso de actualización con toda la información."
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"nombre\": \"Colombia 1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pais/{{id_pais}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pais",
+								"{{id_pais}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "67"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"43-9TU7hYPuITD1vSFlhWZDSHkJqE4\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 02 Oct 2022 05:42:59 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"nombre\": \"Colombia 1\",\n    \"id\": \"146ba629-d02c-45c1-b753-d106b070eb93\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar un pais que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Obtener el mensaje de error esperado\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"No se encontró el restaurante con la identificación proporcionada.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"nombre\": \"Colombia 1.2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/pais/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pais",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "Esta solicitud actualiza un restaurante no válido. La API devuelve un mensaje de error \"No se encontró el restaurante con la identificación dada\""
+			},
+			"response": [
+				{
+					"name": "404",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"nombre\": \"Colombia 1.2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pais/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pais",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "92"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"5c-DXSZe0fMHFgPqM1EvyLjCZ3/Bug\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 02 Oct 2022 05:43:46 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"No se encontró el pais con la identificación proporcionada.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Eliminar un pais",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/pais/{{id_pais}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pais",
+						"{{id_pais}}"
+					]
+				},
+				"description": "Esta solicitud eliminar restaurante. La API devuelve el código de estado de la operación."
+			},
+			"response": [
+				{
+					"name": "204",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/pais/{{id_pais}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pais",
+								"{{id_pais}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 02 Oct 2022 05:44:52 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Eliminar un pais que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Obtener el mensaje de error esperado\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"No se encontró el restaurante con la identificación proporcionada.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/pais/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pais",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "Esta solicitud elimina un restaurante no válido. La API devuelve un mensaje de error \"No se encontró el restaurante con la identificación dada\""
+			},
+			"response": [
+				{
+					"name": "404",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/pais/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pais",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "92"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"5c-DXSZe0fMHFgPqM1EvyLjCZ3/Bug\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 02 Oct 2022 05:45:05 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"No se encontró el pais con la identificación proporcionada.\"\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwic3ViIjoxLCJyb2xlcyI6WyJ1c2VyR2FzdHJvbm9teSIsInVzZXJDb3VudHJ5IiwidXNlclByb2R1Y3QiLCJ1c2VyUmVjZWlwdCIsInVzZXJSZXN0YXVyYW50IiwidXNlcldyaXRlIiwidXNlckRlbGV0ZSJdLCJpYXQiOjE2NjQ2ODc1NDEsImV4cCI6MTY2NDY5NDc0MX0.AXoWljacfLTSKE4XF-TqIO8BM2zW9cUNBPBKTVQp8xA",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "id_pais",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
