@@ -17,9 +17,9 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '16'
-      - name: Instalación de librerías y dependencias
+      - name: Run tests
         run: |
-          npm test
+          npm run test
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
