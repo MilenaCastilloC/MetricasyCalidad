@@ -21,6 +21,11 @@ jobs:
         run: npm install
       - name: Run tests
         run: npm test
+      - name: pruebas+coverage
+        id: pruebas
+        run: | 
+          npm -m coverage run -m test discover tests 
+          npm -m coverage xml -i 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
